@@ -28,7 +28,7 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
 
-    humanChoice = humanChoice.toLowerCase();
+    humanChoice = String(humanChoice).toLowerCase();
 
     if(humanChoice == "rock") {
 
@@ -85,15 +85,19 @@ function playRound(humanChoice, computerChoice) {
 
 function playGame() {
 
-    for (let i = 0; i < 5; i++) {
+    const buttons = document.querySelectorAll("button");
+    let humanSelection;
 
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
+    buttons.forEach((button) => {
 
-        playRound(humanSelection, computerSelection);
+        button.addEventListener("click", () => {
+            
+            humanSelection = button.id;
+            const computerSelection = getComputerChoice();
 
-    }
-
+            playRound(humanSelection, computerSelection);
+        });
+    });
 }
 
-playGame()
+playGame();
